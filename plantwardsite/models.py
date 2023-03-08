@@ -1,0 +1,8 @@
+from django.db import models
+
+
+class Measurement(models.Model):
+    soil_hum = models.FloatField()
+    air_hum = models.FloatField()
+    air_temp = models.FloatField()
+    timestamp = models.DateTimeField(auto_now_add=True)
