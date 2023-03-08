@@ -6,3 +6,6 @@ class Measurement(models.Model):
     air_hum = models.FloatField()
     air_temp = models.FloatField()
     timestamp = models.DateTimeField(auto_now_add=True)
+
+class SensorDetails(models.Model):
+    threshold = models.IntegerField()
