@@ -1,0 +1,78 @@
+<html>
+<head>
+<title>Sensor data</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<style>
+    header {
+        background-color: #18A558;
+        color: white;
+        padding: 20px;
+        text-align: center;
+    }
+    @counter-style repeating-emoji {
+        system: cyclic;
+        symbols: "\1F4CF" "🌡️" "💨💦" "🪴💦"; 
+        suffix: " ";
+      }      
+    .repeating-counter-rule {
+        list-style-type: repeating-emoji;
+    }
+    .plant-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 40px
+    }
+    .greenhouse {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-left: 150px;
+        margin-right: 150px;
+    }
+</style>
+</head>
+<body>
+    <header>
+        <h1>Sensor Data</h1>
+		<p>Real-time data from sensors</p>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    </header>
+    {% if sensor_values %}
+    <div class="greenhouse">
+    {% for x in range %}
+    <div class="plant-info">
+            <h3>Plant {{x}}</h3>
+            <p>{{rand_num}}</p>
+            <img src="https://www.svgrepo.com/show/170182/flower-pot.svg" width="200">
+            <ul class="repeating-counter-rule">
+                <li id="threshold">{{threshold.threshold}}</li>
+                <li id="air_temp">{{sensor_values.air_temp}}°</li>
+                <li id="air_hum">{{sensor_values.air_hum}}</li>
+                <li id="soil_hum">{{sensor_values.soil_hum}}</li>
+            </ul>
+        </div>
+    {% endfor %}
+    </div>
+    {% else %}
+        <p>No sensors are available.</p>
+    {% endif %}
+    <script>
+        $(document).ready(function() {
+            setInterval(function() {
+                $.get("/sensor", function(data) {
+                    console.log(data);
+                    var sensorData = data;
+                    $("#threshold").text(sensorData.threshold);
+                    $("#soil_hum").text(sensorData.soil_hum);
+                    $("#air_hum").text(sensorData.air_hum);
+                    $("#air_temp").text(sensorData.air_temp+"°");
+                });
+            }, 5000); 
+        });
+    </script>
+</body>
+
