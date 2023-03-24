@@ -22,6 +22,7 @@
     }
     .plant-info {
         display: flex;
+        flex: 33.33%;
         flex-direction: column;
         align-items: center;
         margin-top: 40px
@@ -29,9 +30,22 @@
     .greenhouse {
         display: flex;
         flex-direction: row;
+        flex-wrap:wrap;
         justify-content: space-between;
         margin-left: 150px;
         margin-right: 150px;
+    }
+    .parent {
+        align: center;
+    }
+    .editThreshold {
+        margin-left: auto;
+        margin-right: auto;
+        width: 30%;
+        margin-top: 25px;
+        border: 3px solid green;
+        border-radius: 10px;
+        padding: 10px;
     }
 </style>
 </head>
@@ -41,18 +55,26 @@
 		<p>Real-time data from sensors</p>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     </header>
+    <div classname="parent">
     {% if sensor_values %}
+    <div class="editThreshold">
+        <form action="{% url 'threshold' %}" method="POST">
+            <label for="threshold">Change threshold:</label> <br>
+            <input name="threshold">
+            </input>
+            <input type="submit">
+        </form>
+    </div>
     <div class="greenhouse">
-    {% for x in range %}
+    {% for dummy in dummies %}
     <div class="plant-info">
-            <h3>Plant {{x}}</h3>
-            <p>{{rand_num}}</p>
+            <h3>Plant</h3>
             <img src="https://www.svgrepo.com/show/170182/flower-pot.svg" width="200">
             <ul class="repeating-counter-rule">
                 <li id="threshold">{{threshold.threshold}}</li>
-                <li id="air_temp">{{sensor_values.air_temp}}°</li>
-                <li id="air_hum">{{sensor_values.air_hum}}</li>
-                <li id="soil_hum">{{sensor_values.soil_hum}}</li>
+                <li id="air_temp">{{dummy.air_temp}}°</li>
+                <li id="air_hum">{{dummy.air_hum}}</li>
+                <li id="soil_hum">{{dummy.soil_hum}}</li>
             </ul>
         </div>
     {% endfor %}
@@ -74,5 +96,6 @@
             }, 5000); 
         });
     </script>
+</div>
 </body>
 
