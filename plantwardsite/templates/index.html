@@ -66,9 +66,9 @@
         </form>
     </div>
     <div class="greenhouse">
-    {% for dummy in dummies %}
+    {% for plantnr, dummy in dummies.items %}
     <div class="plant-info">
-            <h3>Plant</h3>
+            <h3>Plant {{plantnr}}</h3>
             <img src="https://www.svgrepo.com/show/170182/flower-pot.svg" width="200">
             <ul class="repeating-counter-rule">
                 <li id="threshold">{{threshold.threshold}}</li>

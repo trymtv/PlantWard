@@ -8,14 +8,14 @@ from plantwardsite.mqtt import client
 from django.forms.models import model_to_dict
 
 def create_dummies():
-    last_measurement = Measurement.objects.last()
-    dummies = [last_measurement]
+    dummies = {1:Measurement.objects.last()}
     for i in range(5):
+        plantnr = i + 2
         dummy = Measurement()
         dummy.soil_hum = random.randrange(20, 50)
         dummy.air_hum = random.randrange(20, 50)
         dummy.air_temp = random.randrange(10, 30)
-        dummies.append(dummy)
+        dummies.update({plantnr: dummy})
     return dummies
 
 
