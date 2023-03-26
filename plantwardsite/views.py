@@ -7,8 +7,9 @@ from plantwardsite.models import Measurement, SensorDetails
 from plantwardsite.mqtt import client
 from django.forms.models import model_to_dict
 
+# makes a dictionary with actual measurement and mock ups
 def create_dummies():
-    dummies = {1:Measurement.objects.last()}
+    dummies = {1: Measurement.objects.last()}
     for i in range(5):
         plantnr = i + 2
         dummy = Measurement()
@@ -18,15 +19,17 @@ def create_dummies():
         dummies.update({plantnr: dummy})
     return dummies
 
-
+# creating context and makes is accessable in HTML file
 def index(request):
     last_measurement = Measurement.objects.last()
     threshold = SensorDetails.objects.last()
-    rand_num = random.randrange(-2, 3)
     dummies = create_dummies()
-    return render(request, 'index.html', {"sensor_values": last_measurement, "threshold":threshold, 
-    "range": range(1,4), "rand_num": rand_num, "dummies": dummies})
+    return render(request, 'index.html', {"sensor_values": last_measurement,
+                                          "threshold": threshold,
+                                          "dummies": dummies})
 
+
+#to update threshold value 
 @csrf_exempt
 def threshold(request):
     if request.method == "POST":
@@ -38,12 +41,13 @@ def threshold(request):
         return HttpResponseRedirect("/")
     return HttpResponse(status=405)
 
+
 @csrf_exempt
 def sensor(request):
     if request.method == "POST":
         body = json.loads(request.body)
         measurement = Measurement(soil_hum=body["soil_hum"],
-                                  air_hum=body["air_hum"], 
+                                  air_hum=body["air_hum"],
                                   air_temp=body["air_temp"])
         measurement.save()
         return HttpResponse(status=200)

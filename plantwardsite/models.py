@@ -1,5 +1,6 @@
 from django.db import models
 
+#defines the database table 
 
 class Measurement(models.Model):
     soil_hum = models.FloatField()
