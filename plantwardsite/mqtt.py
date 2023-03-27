@@ -16,6 +16,7 @@ def on_message(mqtt_client, userdata, msg):
         new_measurement = Measurement(**message_body)
         new_measurement.save()
     except Exception:
+        print("[ERROR] Failed parsing mqtt message!!!")
         pass
 
 client = mqtt.Client()
