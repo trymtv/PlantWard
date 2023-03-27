@@ -6,10 +6,10 @@ The PlantWard project is comprised of two different parts.
 2. A webserver hosting both a frontend and a mqtt broker.
 
 ### Project Architecture
-![Alt text](./plantward_architecture.png)
+![Alt text](./resources/plantward_architecture.png)
 
 ### Hardware schematic
-<img src="./plantward_schematic.png">
+![Alt text](./resources/plantward_schematic.png)
 
 ### Arduino Platform and Software
 
@@ -41,3 +41,12 @@ python manage.py runserver 0.0.0.0:80
 ```
 
 A running webserver can be found [ here ](http://64.225.72.132/) on the server running at `64.225.72.132`. This is also the mqtt broker.
+
+## Prototyp
+
+This are the results of the current prototype:
+
+1. The pump activates for 5 seconds when the soil humidity sensor detects a lower humidity than the threshold (shown here by removing the sensor from the water)
+<video controls>
+  <source src="./resources/pump.mp4" type="video/mp4">
+</video>
