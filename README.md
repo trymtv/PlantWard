@@ -46,7 +46,10 @@ A running webserver can be found [ here ](http://64.225.72.132/) on the server r
 
 This are the results of the current prototype:
 
-1. The pump activates for 5 seconds when the soil humidity sensor detects a lower humidity than the threshold (shown here by removing the sensor from the water)
-<video controls>
-  <source src="./resources/pump.mp4" type="video/mp4">
-</video>
+1. The pump activates for 5 seconds when the soil humidity sensor detects a lower humidity than the threshold (shown [ here ](./resources/pump.mp4) by removing the sensor from the water) 
+2. The pump activates after changing the threshold (show [here](./resources/threshold_change.mp4) by changing the level to something lover than possible)
+3. Images of the prototype:
+    - Top view
+    ![](./resources/top.jpg)
+    - Side view
+    ![](./resources/front.jpg)
