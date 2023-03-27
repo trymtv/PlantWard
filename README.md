@@ -9,4 +9,5 @@ The PlantWard project is comprised of two different parts.
 ![Alt text](./plantward_architecture.png)
 
 ### Hardware schematic
-<img style="background-color: white;" src="./plantward_schematic.svg">
+<img src="./plantward_schematic.png">
+
