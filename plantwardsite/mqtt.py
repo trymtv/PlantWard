@@ -11,9 +11,12 @@ def on_connect(mqtt_client, userdata, flags, rc):
         print('Bad connection. Code:', rc)
 
 def on_message(mqtt_client, userdata, msg):
-    message_body = json.loads(msg.payload)
-    new_measurement = Measurement(**message_body)
-    new_measurement.save()
+    try:
+        message_body = json.loads(msg.payload)
+        new_measurement = Measurement(**message_body)
+        new_measurement.save()
+    except Exception:
+        pass
 
 client = mqtt.Client()
 client.on_connect = on_connect
